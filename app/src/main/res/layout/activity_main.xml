@@ -88,6 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="4"
+                android:onClick="firstSent"
                 android:text="Send"
                 android:textSize="14sp" />
 
@@ -166,6 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="4"
+                android:onClick="secondSent"
                 android:text="Send"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -263,6 +265,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="Button" />
+        android:onClick="newGame"
+        android:text="Start" />
 
 </LinearLayout>
