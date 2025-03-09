@@ -64,7 +64,8 @@
                 android:ems="10"
                 android:gravity="center"
                 android:hint="Sum"
-                android:inputType="number" />
+                android:inputType="number"
+                android:onClick="typing1" />
 
             <Space
                 android:layout_width="match_parent"
@@ -143,7 +144,8 @@
                 android:ems="10"
                 android:gravity="center"
                 android:hint="Sum"
-                android:inputType="number" />
+                android:inputType="number"
+                android:onClick="typing2" />
 
             <Space
                 android:layout_width="match_parent"
@@ -221,7 +223,8 @@
                 android:ems="10"
                 android:gravity="center"
                 android:hint="Sum"
-                android:inputType="number" />
+                android:inputType="number"
+                android:onClick="typing3" />
 
             <Space
                 android:layout_width="match_parent"
@@ -245,6 +248,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="4"
+                android:onClick="lastSend"
                 android:text="Send"
                 android:textSize="14sp" />
         </LinearLayout>
