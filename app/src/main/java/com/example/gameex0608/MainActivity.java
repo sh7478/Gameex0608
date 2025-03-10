@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     int num2;
     int rolledNum;
     int successRate;
+    int send;
     String st;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,44 +71,44 @@ public class MainActivity extends AppCompatActivity {
 
     public void firstSent(View view)
     {
-        st = firstAns.getText().toString();
-        answer = Integer.parseInt(st);
-        firstMark.setVisibility(View.VISIBLE);
-        if(answer == sum)
-        {
-            firstMark.setImageResource(R.drawable.correct);
-            successRate++;
+        if(send==0) {
+            st = firstAns.getText().toString();
+            answer = Integer.parseInt(st);
+            firstMark.setVisibility(View.VISIBLE);
+            if (answer == sum) {
+                firstMark.setImageResource(R.drawable.correct);
+                successRate++;
+            } else {
+                firstMark.setImageResource(R.drawable.wrong);
+            }
+            secondCol.setVisibility(View.VISIBLE);
+            txtVSum1.setVisibility(View.VISIBLE);
+            num1 = randomNum();
+            sum = sum + num1;
+            txtVNum3.setText("" + num1);
+            txtVSum2.setText("" + sum);
+            send++;
         }
-        else
-        {
-            firstMark.setImageResource(R.drawable.wrong);
-        }
-        secondCol.setVisibility(View.VISIBLE);
-        txtVSum1.setVisibility(View.VISIBLE);
-        num1 = randomNum();
-        sum = sum + num1;
-        txtVNum3.setText(""+num1);
-        txtVSum2.setText(""+sum);
     }
     public void secondSent(View view)
     {
-        st = secondAns.getText().toString();
-        answer = Integer.parseInt(st);
-        secondMark.setVisibility(View.VISIBLE);
-        if(answer == sum)
-        {
-            secondMark.setImageResource(R.drawable.correct);
-            successRate++;
+        if(send == 1) {
+            st = secondAns.getText().toString();
+            answer = Integer.parseInt(st);
+            secondMark.setVisibility(View.VISIBLE);
+            if (answer == sum) {
+                secondMark.setImageResource(R.drawable.correct);
+                successRate++;
+            } else {
+                secondMark.setImageResource(R.drawable.wrong);
+            }
+            thirdCol.setVisibility(View.VISIBLE);
+            txtVSum2.setVisibility(View.VISIBLE);
+            num1 = randomNum();
+            sum = sum + num1;
+            txtVNum4.setText("" + num1);
+            send++;
         }
-        else
-        {
-            secondMark.setImageResource(R.drawable.wrong);
-        }
-        thirdCol.setVisibility(View.VISIBLE);
-        txtVSum2.setVisibility(View.VISIBLE);
-        num1 = randomNum();
-        sum = sum + num1;
-        txtVNum4.setText("" + num1);
     }
 
     public void newGame(View view)
@@ -136,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
         txtVNum3.setText("");
         txtVNum4.setText("");
         txtVSum2.setText("");
+        firstAns.setText("");
+        secondAns.setText("");
+        thirdAns.setText("");
         num1 = randomNum();
         num2 = randomNum();
         sum = num1 + num2;
@@ -143,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         txtVNum2.setText("" + num2);
         txtVSum1.setText("" + (num1 + num2));
         btnNew.setText("start new game.");
+        send = 0;
 
     }
 
@@ -170,18 +175,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void lastSend(View view)
     {
-        st=thirdAns.getText().toString();
-        answer = Integer.parseInt(st);
-        thirdMark.setVisibility(View.VISIBLE);
-        if(answer == sum)
-        {
-            thirdMark.setImageResource(R.drawable.correct);
-            successRate++;
+        if(send==2) {
+
+            st = thirdAns.getText().toString();
+            answer = Integer.parseInt(st);
+            thirdMark.setVisibility(View.VISIBLE);
+            if (answer == sum) {
+                thirdMark.setImageResource(R.drawable.correct);
+                successRate++;
+            } else {
+                thirdMark.setImageResource(R.drawable.wrong);
+            }
+            btnNew.setText("start new game. correct rate: " + successRate + "/3 or " + (float) successRate / 3 * 100 + "%");
+            send++;
         }
-        else
-        {
-            thirdMark.setImageResource(R.drawable.wrong);
-        }
-        btnNew.setText("start new game. correct rate: " + successRate + "/3 or " + (float)successRate/3*100 + "%");
     }
 }
