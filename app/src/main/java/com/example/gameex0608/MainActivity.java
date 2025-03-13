@@ -19,9 +19,6 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     Button btnNew;
-    Button btnSend1;
-    Button btnSend2;
-    Button btnSend3;
     LinearLayout secondCol;
     LinearLayout thirdCol;
     TextView txtVNum1;
@@ -48,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnNew = findViewById(R.id.btnNew);
-        btnSend1 = findViewById(R.id.btnSend1);
-        btnSend2 = findViewById(R.id.btnSend2);
-        btnSend3 = findViewById(R.id.btnSend3);
         secondCol = findViewById(R.id.secondCol);
         thirdCol = findViewById(R.id.thirdCol);
         txtVNum1 = findViewById(R.id.txtVNum1);
@@ -66,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         firstAns = findViewById(R.id.firstAns);
         secondAns = findViewById(R.id.secondAns);
         thirdAns = findViewById(R.id.thirdAns);
+        btnNew = findViewById(R.id.btnNew);
         startGame();
     }
 
@@ -73,41 +67,46 @@ public class MainActivity extends AppCompatActivity {
     {
         if(send==0) {
             st = firstAns.getText().toString();
-            answer = Integer.parseInt(st);
-            firstMark.setVisibility(View.VISIBLE);
-            if (answer == sum) {
-                firstMark.setImageResource(R.drawable.correct);
-                successRate++;
-            } else {
-                firstMark.setImageResource(R.drawable.wrong);
+            if(!(st.equals("")))
+            {
+                answer = Integer.parseInt(st);
+                firstMark.setVisibility(View.VISIBLE);
+                if (answer == sum) {
+                    firstMark.setImageResource(R.drawable.correct);
+                    successRate++;
+                } else {
+                    firstMark.setImageResource(R.drawable.wrong);
+                }
+                secondCol.setVisibility(View.VISIBLE);
+                txtVSum1.setVisibility(View.VISIBLE);
+                num1 = randomNum();
+                sum = sum + num1;
+                txtVNum3.setText("" + num1);
+                txtVSum2.setText("" + sum);
+                send++;
             }
-            secondCol.setVisibility(View.VISIBLE);
-            txtVSum1.setVisibility(View.VISIBLE);
-            num1 = randomNum();
-            sum = sum + num1;
-            txtVNum3.setText("" + num1);
-            txtVSum2.setText("" + sum);
-            send++;
         }
     }
     public void secondSent(View view)
     {
         if(send == 1) {
             st = secondAns.getText().toString();
-            answer = Integer.parseInt(st);
-            secondMark.setVisibility(View.VISIBLE);
-            if (answer == sum) {
-                secondMark.setImageResource(R.drawable.correct);
-                successRate++;
-            } else {
-                secondMark.setImageResource(R.drawable.wrong);
+            if(!(st.equals(""))) {
+                answer = Integer.parseInt(st);
+                secondMark.setVisibility(View.VISIBLE);
+                if (answer == sum) {
+                    secondMark.setImageResource(R.drawable.correct);
+                    successRate++;
+                } else {
+                    secondMark.setImageResource(R.drawable.wrong);
+                }
+                thirdCol.setVisibility(View.VISIBLE);
+                txtVSum2.setVisibility(View.VISIBLE);
+                num1 = randomNum();
+                sum = sum + num1;
+                txtVNum4.setText("" + num1);
+                send++;
             }
-            thirdCol.setVisibility(View.VISIBLE);
-            txtVSum2.setVisibility(View.VISIBLE);
-            num1 = randomNum();
-            sum = sum + num1;
-            txtVNum4.setText("" + num1);
-            send++;
         }
     }
 
@@ -121,14 +120,11 @@ public class MainActivity extends AppCompatActivity {
     {
         secondCol.setVisibility(View.INVISIBLE);
         thirdCol.setVisibility(View.INVISIBLE);
-        btnSend1.setVisibility(View.INVISIBLE);
         txtVSum1.setVisibility(View.INVISIBLE);
         txtVSum2.setVisibility(View.INVISIBLE);
         firstMark.setVisibility(View.INVISIBLE);
         secondMark.setVisibility(View.INVISIBLE);
         thirdMark.setVisibility(View.INVISIBLE);
-        btnSend2.setVisibility(View.INVISIBLE);
-        btnSend3.setVisibility(View.INVISIBLE);
         answer = 0;
         successRate = 0;
         sum = 0;
@@ -151,20 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void typing1(View view)
-    {
-        btnSend1.setVisibility(View.VISIBLE);
-    }
 
-    public void typing2(View view)
-    {
-        btnSend2.setVisibility(View.VISIBLE);
-    }
-
-    public void typing3(View view)
-    {
-        btnSend3.setVisibility(View.VISIBLE);
-    }
 
     public int randomNum()
     {
@@ -176,18 +159,19 @@ public class MainActivity extends AppCompatActivity {
     public void lastSend(View view)
     {
         if(send==2) {
-
             st = thirdAns.getText().toString();
-            answer = Integer.parseInt(st);
-            thirdMark.setVisibility(View.VISIBLE);
-            if (answer == sum) {
-                thirdMark.setImageResource(R.drawable.correct);
-                successRate++;
-            } else {
-                thirdMark.setImageResource(R.drawable.wrong);
+            if(!(st.equals(""))) {
+                answer = Integer.parseInt(st);
+                thirdMark.setVisibility(View.VISIBLE);
+                if (answer == sum) {
+                    thirdMark.setImageResource(R.drawable.correct);
+                    successRate++;
+                } else {
+                    thirdMark.setImageResource(R.drawable.wrong);
+                }
+                btnNew.setText("start new game. correct rate: " + successRate + "/3 or " + (float) successRate / 3 * 100 + "%");
+                send++;
             }
-            btnNew.setText("start new game. correct rate: " + successRate + "/3 or " + (float) successRate / 3 * 100 + "%");
-            send++;
         }
     }
 }
